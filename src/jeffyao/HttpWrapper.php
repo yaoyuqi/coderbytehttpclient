@@ -68,7 +68,7 @@ class HttpWrapper
      */
     private function statusCheck(ResponseInterface $response)
     {
-        if ($response->getStatusCode() != 200) {
+        if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 600) {
             throw new ResponseStatusError("The response status code is " . $response->getStatusCode());
         }
     }

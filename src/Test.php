@@ -151,8 +151,9 @@ echo "----test $testName finished\n";
 
 
 echo "\n\n\n\n";
-echo "from here, we begin real test\n";
-echo "first, we let options to get token. \n";
+echo "***********************************\n";
+echo "*****from here, we begin real test\n";
+echo "*****first, we let options to get token. \n";
 /*
  * OPTIONS Test
  */
@@ -168,20 +169,20 @@ print_r("token is:" . $token . "\n");
  * POST Test
  */
 echo "\n\n";
-echo "second, we post our information. \n";
+echo "*****second, we post our information. \n";
 $body = $client->post(
     $url,
     $token,
     ['Customer-header2' => "0000"],
     [
-        "name" => 'this is name',
-        "email" => 'this is email',
-        "url" => 'this is url'
+        "name" => 'Jeff Yao',
+        "email" => 'jeffyao028@gmail.com',
+        "url" => 'https://github.com/yaoyuqi/coderbytehttpclient'
     ]
 );
 
 echo "\n\n";
-echo "the response is: \n";
+echo "*****the response is: \n";
 print_r($body);
 
 echo "\n\n All tests finished.";
