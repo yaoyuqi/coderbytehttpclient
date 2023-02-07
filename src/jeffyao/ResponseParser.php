@@ -53,7 +53,7 @@ class ResponseParser
 
     public function body(string $content): string
     {
-        $pos = strpos($content, "\n\n");
+        $pos = strpos($content, "\r\n\r\n");
         if ($pos === false) {
             return '';
         }
