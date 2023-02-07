@@ -41,7 +41,7 @@ class SimpleUri implements UriInterface
         $this->host = $parts[0];
 
         //parse path
-        $left = substr($left, strlen($parts[0]) + 1);
+        $left = substr($left, strlen($parts[0]));
         $parts = explode('?', $left);
         $this->path = empty($parts[0]) ? '/' : $parts[0];
 

@@ -17,7 +17,7 @@ $url = 'https://corednacom.corewebdna.com/assessment-endpoint.php?xxx=1&ddd=2';
 $simpleUri = new SimpleUri($url);
 assert($simpleUri->getScheme() == 'https');
 assert($simpleUri->getHost() == 'corednacom.corewebdna.com');
-assert($simpleUri->getPath() == 'assessment-endpoint.php');
+assert($simpleUri->getPath() == '/assessment-endpoint.php');
 assert($simpleUri->getQuery() == 'xxx=1&ddd=2');
 echo "----test $testName finished\n";
 
