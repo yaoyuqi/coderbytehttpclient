@@ -25,13 +25,19 @@ class SimpleResponse implements ResponseInterface
         $this->body = new SimpleBody($parser->body($content));
         $this->headers = $parser->headers($content);
 
-        print_r("*********Response: $this->status -headers: \n");
+        print_r("---------original response:\n");
+        print_r($content);
+
+        print_r("*********Response parsed: $this->status -headers: \n");
         foreach ($this->headers as $name => $values) {
             foreach ($values as $value) {
                 print_r($name . " =>" . $value . "\n");
             }
         }
 
+        print_r("\n");
+        print_r("*********Response body: \n");
+        print_r($this->body);
         print_r("\n");
     }
 

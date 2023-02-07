@@ -13,8 +13,6 @@ class RequestWriter
         $out .= sprintf("Host: %s\r\n", $uri->getHost());
 
         $headers = $request->getHeaders();
-        print_r($headers);
-
         foreach ($headers as $name => $values) {
             foreach ($values as $value) {
                 $out .= sprintf("%s: %s\r\n", $name, $value);
