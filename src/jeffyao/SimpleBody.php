@@ -15,7 +15,7 @@ class SimpleBody implements StreamInterface
      */
     public function __construct($body)
     {
-        if (is_array($body)) {
+        if (is_array($body) && !empty($body)) {
             try {
                 $this->bodyStr = json_encode($body);
             } catch (\JsonException $e) {
