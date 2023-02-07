@@ -49,7 +49,7 @@ class HttpWrapper
      */
     public function post(string $url, string $token, array $headers, array $body): array
     {
-        $headers['Authorization'][] = 'Bearer ' . $token;
+        $headers['Authorization'] = 'Bearer ' . $token;
         $request = new SimpleRequest($url, 'POST', $headers, $body);
         $response = $this->client->handle($request);
         $this->statusCheck($response);
