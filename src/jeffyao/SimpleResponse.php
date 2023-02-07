@@ -26,7 +26,7 @@ class SimpleResponse implements ResponseInterface
         $this->headers = $parser->headers($content);
 
         print_r("---------original response:\n");
-        print_r($content);
+        print_r($content . "\n\n");
 
         print_r("*********Response parsed: $this->status -headers: \n");
         foreach ($this->headers as $name => $values) {

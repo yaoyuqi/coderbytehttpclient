@@ -150,21 +150,25 @@ assert(!empty($response->getBody()));
 echo "----test $testName finished\n";
 
 
+echo "\n\n\n\n";
+echo "from here, we begin real test\n";
+echo "first, we let options to get token. \n";
 /*
  * OPTIONS Test
  */
-$testName = 'Options Test';
-echo "----begin test $testName\n";
 $client = new HttpWrapper(new FSocketClient());
 $url = "https://corednacom.corewebdna.com/assessment-endpoint.php";
 $token = $client->options($url, ['Customer-header' => "123"]);
 
 $token = $response->getBody();
+echo "\n\n";
 print_r("token is:" . $token . "\n");
 
 /*
  * POST Test
  */
+echo "\n\n";
+echo "second, we post our information. \n";
 $body = $client->post(
     $url,
     $token,
@@ -176,7 +180,9 @@ $body = $client->post(
     ]
 );
 
+echo "\n\n";
+echo "the response is: \n";
 print_r($body);
 
-echo "\n test finished.";
+echo "\n\n All tests finished.";
 
