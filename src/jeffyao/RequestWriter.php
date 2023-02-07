@@ -4,8 +4,26 @@ namespace jeffyao;
 
 use Psr\Http\Message\RequestInterface;
 
+/**
+ * Request data formatter.
+ * Transfer RequestInterface to raw string context.
+ */
 class RequestWriter
 {
+    /**
+     * Write the header part.
+     * It ends with two line breaks.
+     *
+     * sample:
+     * POST /assessment-endpoint.php HTTP/1.1
+     * Authorization: Bearer 123123
+     * Content-Type: application/json
+     * User-Agent: PostmanRuntime/7.28.4
+     *
+     *
+     * @param RequestInterface $request
+     * @return string
+     */
     public function header(RequestInterface $request): string
     {
         $uri = $request->getUri();
@@ -31,11 +49,21 @@ class RequestWriter
         return $out;
     }
 
+    /**
+     * Check the request whether has form payload.
+     * @param RequestInterface $request
+     * @return bool
+     */
     public function hasData(RequestInterface $request): bool
     {
         return $request->getBody()->getSize() > 0;
     }
 
+    /**
+     * Write the form payload part. otherwise, make it blank.
+     * @param RequestInterface $request
+     * @return string
+     */
     public function data(RequestInterface $request): string
     {
         $data = '';

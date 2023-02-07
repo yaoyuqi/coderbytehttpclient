@@ -6,10 +6,15 @@ use jeffyao\exceptions\ConnectionException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Customized Http Client.
+ * Based on fsockopen
+ */
 class FSocketClient implements HttpClient
 {
 
     /**
+     * create resource, we can use it the handle request
      * @param string $host
      * @param int $port
      * @return resource
@@ -31,6 +36,7 @@ class FSocketClient implements HttpClient
     }
 
     /**
+     * handle http request
      * @throws ConnectionException
      */
     public function handle(RequestInterface $request): ResponseInterface
@@ -47,6 +53,12 @@ class FSocketClient implements HttpClient
         return new SimpleResponse($out);
     }
 
+    /**
+     * use fwrite to write request data.
+     * @param $fp
+     * @param RequestInterface $request
+     * @return void
+     */
     private function writeRequest($fp, RequestInterface $request)
     {
         $writer = new RequestWriter();

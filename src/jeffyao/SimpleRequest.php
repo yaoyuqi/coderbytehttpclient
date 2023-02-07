@@ -7,11 +7,27 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * Simple implementation of RequestInterface
+ * Just implemented the needed part.
+ */
 class SimpleRequest implements RequestInterface
 {
+    /**
+     * @var array
+     */
     private $headers = [];
+    /**
+     * @var SimpleBody
+     */
     private $body;
+    /**
+     * @var string
+     */
     private $method = 'GET';
+    /**
+     * @var SimpleUri
+     */
     private $uri;
 
     /**

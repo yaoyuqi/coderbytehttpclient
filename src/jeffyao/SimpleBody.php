@@ -5,11 +5,25 @@ namespace jeffyao;
 use jeffyao\exceptions\MalformedDataException;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * Simple implementation of StreamInterface
+ * Just implemented the needed part.
+ *
+ */
 class SimpleBody implements StreamInterface
 {
+    /**
+     * body content
+     * @var string
+     */
     private $bodyStr = '';
 
     /**
+     * We can accept both array and string.
+     * for array. if it is empty. we make the content blank.
+     * Otherwise, we transfer it to string through json encode.
+     * For string, we just directly save it.
+     *
      * @param array|string $body
      * @throws MalformedDataException
      */

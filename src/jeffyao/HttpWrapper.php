@@ -6,6 +6,7 @@ use jeffyao\exceptions\MalformedDataException;
 use jeffyao\exceptions\ResponseStatusError;
 use Psr\Http\Message\ResponseInterface;
 
+
 class HttpWrapper
 {
     /**

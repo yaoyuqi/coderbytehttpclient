@@ -5,16 +5,40 @@ namespace jeffyao;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * Simple implementation of ResponseInterface
+ * Just implemented the needed part.
+ */
 class SimpleResponse implements ResponseInterface
 {
-    /** @var string */
+    /**
+     * original raw content
+     * @var string
+     */
     private $content;
 
+    /**
+     * statusCode
+     * @var int
+     */
     private $status;
+    /**
+     * body
+     * @var SimpleBody
+     */
     private $body;
+
+    /**
+     * headers
+     * @var array
+     */
     private $headers;
 
     /**
+     * Receive the raw response content.
+     * Tranfer it into status, headers, and so on.
+     * A better way is to make ResponseParser parser as an param,
+     * then we can use DI to make it more flexible.
      * @param string $content
      */
     public function __construct(string $content)

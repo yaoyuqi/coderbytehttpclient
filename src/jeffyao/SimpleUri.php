@@ -5,11 +5,27 @@ namespace jeffyao;
 use jeffyao\exceptions\MalformedDataException;
 use Psr\Http\Message\UriInterface;
 
+/**
+ * Simple implementation of UriInterface
+ * Just implemented the needed part.
+ */
 class SimpleUri implements UriInterface
 {
+    /**
+     * @var string
+     */
     private $schema;
+    /**
+     * @var string
+     */
     private $host;
+    /**
+     * @var string
+     */
     private $path;
+    /**
+     * @var string
+     */
     private $query;
 
     /**
