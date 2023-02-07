@@ -37,7 +37,7 @@ class SimpleResponse implements ResponseInterface
 
         print_r("\n");
         print_r("*********Response body: \n");
-        print_r($this->body);
+        echo $this->body;
         print_r("\n");
     }
 

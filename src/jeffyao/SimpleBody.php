@@ -105,4 +105,5 @@ class SimpleBody implements StreamInterface
     {
         // TODO: Implement getMetadata() method.
     }
+
 }
