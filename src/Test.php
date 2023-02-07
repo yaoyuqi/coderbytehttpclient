@@ -160,7 +160,7 @@ $url = "https://corednacom.corewebdna.com/assessment-endpoint.php";
 $token = $client->options($url, ['Customer-header' => "123"]);
 
 $token = $response->getBody();
-print_r("token is:" . $token);
+print_r("token is:" . $token . "\n");
 
 /*
  * POST Test
