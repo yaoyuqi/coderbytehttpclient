@@ -21,6 +21,7 @@ class SimpleBody implements StreamInterface
             } catch (\JsonException $e) {
                 throw new MalformedDataException("Json encode error.", $e->getCode(), $e);
             }
+
         } else {
             $this->bodyStr = $body;
         }
