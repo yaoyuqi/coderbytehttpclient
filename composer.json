@@ -1,0 +1,21 @@
+{
+    "name": "jeffyao/codebyte-http-client",
+    "description": "php http client",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jeffyao\\CodebyteHttpClient\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jeff Yao",
+            "email": "jeffyao028@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "psr/http-message": "1.0.x-dev"
+    }
+}
