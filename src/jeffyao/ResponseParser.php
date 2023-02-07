@@ -34,9 +34,8 @@ class ResponseParser
             $lastPos = strlen($content);
         }
 
-        $headers = substr($content, $pos, $lastPos - $pos);
+        $headers = substr($content, $pos + 1, $lastPos - $pos);
         $headers = explode("\n", $headers);
-        print_r($headers);
 
         $result = [];
         foreach ($headers as $row) {
@@ -44,10 +43,10 @@ class ResponseParser
                 continue;
             }
             $cells = explode(':', $row);
-            if (count($cells) < 2) {
-                throw new MalformedDataException("Response invalid:" . $content);
+            if (count($cells) == 2) {
+                $result[trim($cells[0])][] = trim($cells[1]);
             }
-            $result[trim($cells[0])][] = trim($cells[1]);
+
         }
         return $result;
     }
