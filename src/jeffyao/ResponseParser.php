@@ -36,6 +36,7 @@ class ResponseParser
 
         $headers = substr($content, $pos, $lastPos - $pos);
         $headers = explode("\n", $headers);
+        print_r($headers);
 
         $result = [];
         foreach ($headers as $row) {
