@@ -47,7 +47,7 @@ class HttpWrapper
      * @throws MalformedDataException
      * @throws ResponseStatusError
      */
-    public function post(string $url, string $token, array $headers, array $body): array
+    public function post(string $url, string $token, array $headers, array $body)
     {
         $headers['Authorization'] = 'Bearer ' . $token;
         $headers['Content-Type'] = 'application/json';
