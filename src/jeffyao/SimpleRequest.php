@@ -114,4 +114,5 @@ class SimpleRequest implements RequestInterface
     {
         throw new \Exception("Not implemented");
     }
+
 }

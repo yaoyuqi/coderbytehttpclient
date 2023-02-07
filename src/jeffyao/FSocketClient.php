@@ -49,36 +49,12 @@ class FSocketClient implements HttpClient
 
     private function writeRequest($fp, RequestInterface $request)
     {
-        $uri = $request->getUri();
-        $out = sprintf("%s %s HTTP/1.1\r\n", strtoupper($request->getMethod()), $uri->getPath());
-        $out .= sprintf("Host: %s\r\n", $uri->getHost());
+        $writer = new RequestWriter();
+        fwrite($fp, $writer->header($request));
 
-        $headers = $request->getHeaders();
-
-        foreach ($headers as $name => $values) {
-            foreach ($values as $value) {
-                $out .= sprintf("%s: %s", $name, $value);
-            }
+        if ($writer->hasData($request)) {
+            fwrite($fp, $writer->data($request));
         }
-
-        if ($request->getBody()->getSize() > 0) {
-            $out .= sprintf("Content-Length: %s\r\n\r\n", $request->getBody()->getSize());
-        }
-        $out .= "Connection: Close\r\n\r\n";
-        print_r($out);
-        fwrite($fp, $out);
-
-//        fwrite($fp, sprintf("%s %s HTTP/1.1\r\n", strtoupper($request->getMethod()), $uri->getPath()));
-//        fwrite($fp, sprintf("Host: %s\r\n", $uri->getHost()));
-//        if ($request->getMethod() == 'POST') {
-//            fwrite($fp, "Content-Type: application/json\r\n");
-//            fwrite($fp, sprintf("Content-Length: %s\r\n\r\n", $request->getBody()->getSize()));
-//        }
-////
-////
-//        fwrite($fp, "Connection: Close\r\n\r\n");
-////        $data = "";
-////        fwrite($fp, $data);
     }
 
 }

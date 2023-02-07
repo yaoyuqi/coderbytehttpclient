@@ -2,6 +2,7 @@
 
 namespace jeffyao;
 
+use jeffyao\exceptions\MalformedDataException;
 use Psr\Http\Message\StreamInterface;
 
 class SimpleBody implements StreamInterface
@@ -9,12 +10,19 @@ class SimpleBody implements StreamInterface
     private $bodyStr = '';
 
     /**
-     * @param array $body
+     * @param array|string $body
+     * @throws MalformedDataException
      */
-    public function __construct(array $body)
+    public function __construct($body)
     {
-        if (!empty($body)) {
-            $this->bodyStr = json_encode($body);
+        if (is_array($body)) {
+            try {
+                $this->bodyStr = json_encode($body);
+            } catch (\JsonException $e) {
+                throw new MalformedDataException("Json encode error.", $e->getCode(), $e);
+            }
+        } else {
+            $this->bodyStr = $body;
         }
     }
 

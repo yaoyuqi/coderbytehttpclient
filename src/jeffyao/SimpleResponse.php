@@ -10,12 +10,29 @@ class SimpleResponse implements ResponseInterface
     /** @var string */
     private $content;
 
+    private $status;
+    private $body;
+    private $headers;
+
     /**
      * @param string $content
      */
     public function __construct(string $content)
     {
         $this->content = $content;
+        $parser = new ResponseParser();
+        $this->status = $parser->status($content);
+        $this->body = new SimpleBody($parser->body($content));
+        $this->headers = $parser->headers($content);
+
+        print_r("*********Response: $this->status -headers: \n");
+        foreach ($this->headers as $name => $values) {
+            foreach ($values as $value) {
+                print_r($name . " =>" . $value . "\n");
+            }
+        }
+
+        print_r("\n");
     }
 
 
@@ -31,17 +48,17 @@ class SimpleResponse implements ResponseInterface
 
     public function getHeaders()
     {
-        // TODO: Implement getHeaders() method.
+        return $this->headers;
     }
 
     public function hasHeader($name)
     {
-        // TODO: Implement hasHeader() method.
+        return isset($this->headers[$name]);
     }
 
     public function getHeader($name)
     {
-        // TODO: Implement getHeader() method.
+        return $this->hasHeader($name) ? $this->headers[$name] : [];
     }
 
     public function getHeaderLine($name)
@@ -66,7 +83,7 @@ class SimpleResponse implements ResponseInterface
 
     public function getBody()
     {
-
+        return $this->body;
     }
 
     public function withBody(StreamInterface $body)
@@ -76,7 +93,7 @@ class SimpleResponse implements ResponseInterface
 
     public function getStatusCode()
     {
-        // TODO: Implement getStatusCode() method.
+        return $this->status;
     }
 
     public function withStatus($code, $reasonPhrase = '')
